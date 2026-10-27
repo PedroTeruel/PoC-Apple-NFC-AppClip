@@ -1,0 +1,19 @@
+//
+//  PoCNFCAppClipTests.swift
+//  PoCNFCAppClipTests
+//
+//  Created by Pedro Henrique Hossaka Teruel on 27/10/26.
+//
+
+import Testing
+@testable import PoCNFCAppClip
+
+struct PoCNFCAppClipTests {
+
+    @Test func example() async throws {
+        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+        // Swift Testing Documentation
+        // https://developer.apple.com/documentation/testing
+    }
+
+}
