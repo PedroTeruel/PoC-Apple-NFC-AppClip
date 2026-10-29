@@ -11,6 +11,9 @@ struct BooksView: View {
     @State private var showScanner = false
     
     @StateObject private var nfcManager = NFCManager()
+    
+    @State private var scannedBookID: LibraryBook.ID?
+    @State private var showUnknownBookAlert = false
 
     var body: some View {
         List {
@@ -68,12 +71,51 @@ struct BooksView: View {
             }
         }
         .navigationTitle("Biblioteca")
+        .onChange(of: nfcManager.scannedCode) { _, code in
+            guard let code else { return }
+
+            if let book = bookForTag(code) {
+                scannedBookID = book.id
+            } else {
+                showUnknownBookAlert = true
+            }
+        }
+        .navigationDestination(item: $scannedBookID) { id in
+            if let book = library.books.first(where: { $0.id == id }) {
+                BookDetailView(book: book)
+            } else {
+                ContentUnavailableView(
+                    "Livro não encontrado",
+                    systemImage: "book.closed"
+                )
+            }
+        }
+        .alert("Livro não encontrado", isPresented: $showUnknownBookAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Esta etiqueta NFC não está associada a um livro do catálogo.")
+        }
+
 //        .sheet(isPresented: $showScanner) {
 //            ScanSheetView()
 //                .presentationDetents([.medium])
 //                .presentationDragIndicator(.visible)
 //        }
     }
+    
+    private func bookForTag(_ code: String) -> LibraryBook? {
+        let mapping: [String: String] = [
+            "LIVRO-001": "Arquitetura de Sistemas Para Web com Java",
+            "LIVRO-002": "A Divina Comédia"
+        ]
+
+        guard let title = mapping[code] else {
+            return nil
+        }
+
+        return library.books.first { $0.title == title }
+    }
+    
 }
 
 #Preview {
