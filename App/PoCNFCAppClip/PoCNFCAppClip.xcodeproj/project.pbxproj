@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		07E91C793092708400BC4E77 /* DefaultClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 07E91C593092708300BC4E77 /* DefaultClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0721C48F309121C100051F87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,13 +25,59 @@
 			remoteGlobalIDString = 0721C480309121C100051F87;
 			remoteInfo = PoCNFCAppClip;
 		};
+		07E91C683092708400BC4E77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0721C479309121C100051F87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07E91C583092708300BC4E77;
+			remoteInfo = DefaultClip;
+		};
+		07E91C723092708400BC4E77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0721C479309121C100051F87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07E91C583092708300BC4E77;
+			remoteInfo = DefaultClip;
+		};
+		07E91C773092708400BC4E77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0721C479309121C100051F87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07E91C583092708300BC4E77;
+			remoteInfo = DefaultClip;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		07E91C7E3092708400BC4E77 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolder = Product;
+			files = (
+				07E91C793092708400BC4E77 /* DefaultClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0721C481309121C100051F87 /* PoCNFCAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PoCNFCAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0721C48E309121C100051F87 /* PoCNFCAppClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoCNFCAppClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0721C498309121C100051F87 /* PoCNFCAppClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoCNFCAppClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E91C593092708300BC4E77 /* DefaultClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefaultClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E91C673092708400BC4E77 /* DefaultClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DefaultClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07E91C713092708400BC4E77 /* DefaultClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DefaultClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		07E91C7A3092708400BC4E77 /* Exceptions for "DefaultClip" folder in "DefaultClip" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 07E91C583092708300BC4E77 /* DefaultClip */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0721C483309121C100051F87 /* PoCNFCAppClip */ = {
@@ -43,6 +93,24 @@
 		0721C49B309121C100051F87 /* PoCNFCAppClipUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = PoCNFCAppClipUITests;
+			sourceTree = "<group>";
+		};
+		07E91C5A3092708300BC4E77 /* DefaultClip */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				07E91C7A3092708400BC4E77 /* Exceptions for "DefaultClip" folder in "DefaultClip" target */,
+			);
+			path = DefaultClip;
+			sourceTree = "<group>";
+		};
+		07E91C6A3092708400BC4E77 /* DefaultClipTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DefaultClipTests;
+			sourceTree = "<group>";
+		};
+		07E91C743092708400BC4E77 /* DefaultClipUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DefaultClipUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -63,6 +131,21 @@
 			files = (
 			);
 		};
+		07E91C563092708300BC4E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		07E91C643092708400BC4E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		07E91C6E3092708400BC4E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -72,6 +155,9 @@
 				0721C483309121C100051F87 /* PoCNFCAppClip */,
 				0721C491309121C100051F87 /* PoCNFCAppClipTests */,
 				0721C49B309121C100051F87 /* PoCNFCAppClipUITests */,
+				07E91C5A3092708300BC4E77 /* DefaultClip */,
+				07E91C6A3092708400BC4E77 /* DefaultClipTests */,
+				07E91C743092708400BC4E77 /* DefaultClipUITests */,
 				0721C482309121C100051F87 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,6 +168,9 @@
 				0721C481309121C100051F87 /* PoCNFCAppClip.app */,
 				0721C48E309121C100051F87 /* PoCNFCAppClipTests.xctest */,
 				0721C498309121C100051F87 /* PoCNFCAppClipUITests.xctest */,
+				07E91C593092708300BC4E77 /* DefaultClip.app */,
+				07E91C673092708400BC4E77 /* DefaultClipTests.xctest */,
+				07E91C713092708400BC4E77 /* DefaultClipUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,8 +185,12 @@
 				0721C47D309121C100051F87 /* Sources */,
 				0721C47E309121C100051F87 /* Frameworks */,
 				0721C47F309121C100051F87 /* Resources */,
+				07E91C7E3092708400BC4E77 /* Embed App Clips */,
 			);
 			buildRules = (
+			);
+			dependencies = (
+				07E91C783092708400BC4E77 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				0721C483309121C100051F87 /* PoCNFCAppClip */,
@@ -149,6 +242,66 @@
 			productReference = 0721C498309121C100051F87 /* PoCNFCAppClipUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		07E91C583092708300BC4E77 /* DefaultClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07E91C7B3092708400BC4E77 /* Build configuration list for PBXNativeTarget "DefaultClip" */;
+			buildPhases = (
+				07E91C553092708300BC4E77 /* Sources */,
+				07E91C563092708300BC4E77 /* Frameworks */,
+				07E91C573092708300BC4E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				07E91C5A3092708300BC4E77 /* DefaultClip */,
+			);
+			name = DefaultClip;
+			productName = DefaultClip;
+			productReference = 07E91C593092708300BC4E77 /* DefaultClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
+		07E91C663092708400BC4E77 /* DefaultClipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07E91C7F3092708400BC4E77 /* Build configuration list for PBXNativeTarget "DefaultClipTests" */;
+			buildPhases = (
+				07E91C633092708400BC4E77 /* Sources */,
+				07E91C643092708400BC4E77 /* Frameworks */,
+				07E91C653092708400BC4E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07E91C693092708400BC4E77 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				07E91C6A3092708400BC4E77 /* DefaultClipTests */,
+			);
+			name = DefaultClipTests;
+			productName = DefaultClipTests;
+			productReference = 07E91C673092708400BC4E77 /* DefaultClipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		07E91C703092708400BC4E77 /* DefaultClipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07E91C823092708400BC4E77 /* Build configuration list for PBXNativeTarget "DefaultClipUITests" */;
+			buildPhases = (
+				07E91C6D3092708400BC4E77 /* Sources */,
+				07E91C6E3092708400BC4E77 /* Frameworks */,
+				07E91C6F3092708400BC4E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07E91C733092708400BC4E77 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				07E91C743092708400BC4E77 /* DefaultClipUITests */,
+			);
+			name = DefaultClipUITests;
+			productName = DefaultClipUITests;
+			productReference = 07E91C713092708400BC4E77 /* DefaultClipUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -156,7 +309,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2700;
+				LastSwiftUpdateCheck = 2710;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					0721C480309121C100051F87 = {
@@ -169,6 +322,17 @@
 					0721C497309121C100051F87 = {
 						CreatedOnToolsVersion = 27.0;
 						TestTargetID = 0721C480309121C100051F87;
+					};
+					07E91C583092708300BC4E77 = {
+						CreatedOnToolsVersion = 27.1;
+					};
+					07E91C663092708400BC4E77 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 07E91C583092708300BC4E77;
+					};
+					07E91C703092708400BC4E77 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 07E91C583092708300BC4E77;
 					};
 				};
 			};
@@ -189,6 +353,9 @@
 				0721C480309121C100051F87 /* PoCNFCAppClip */,
 				0721C48D309121C100051F87 /* PoCNFCAppClipTests */,
 				0721C497309121C100051F87 /* PoCNFCAppClipUITests */,
+				07E91C583092708300BC4E77 /* DefaultClip */,
+				07E91C663092708400BC4E77 /* DefaultClipTests */,
+				07E91C703092708400BC4E77 /* DefaultClipUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +372,21 @@
 			);
 		};
 		0721C496309121C100051F87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		07E91C573092708300BC4E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		07E91C653092708400BC4E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		07E91C6F3092708400BC4E77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -227,6 +409,21 @@
 			files = (
 			);
 		};
+		07E91C553092708300BC4E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		07E91C633092708400BC4E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		07E91C6D3092708400BC4E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -239,6 +436,21 @@
 			isa = PBXTargetDependency;
 			target = 0721C480309121C100051F87 /* PoCNFCAppClip */;
 			targetProxy = 0721C499309121C100051F87 /* PBXContainerItemProxy */;
+		};
+		07E91C693092708400BC4E77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07E91C583092708300BC4E77 /* DefaultClip */;
+			targetProxy = 07E91C683092708400BC4E77 /* PBXContainerItemProxy */;
+		};
+		07E91C733092708400BC4E77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07E91C583092708300BC4E77 /* DefaultClip */;
+			targetProxy = 07E91C723092708400BC4E77 /* PBXContainerItemProxy */;
+		};
+		07E91C783092708400BC4E77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07E91C583092708300BC4E77 /* DefaultClip */;
+			targetProxy = 07E91C773092708400BC4E77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -512,6 +724,160 @@
 			};
 			name = Release;
 		};
+		07E91C7C3092708400BC4E77 /* Debug configuration for PBXNativeTarget "DefaultClip" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DefaultClip/DefaultClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G4P28UKJSG;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DefaultClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PedroTeruel.PoCNFCAppClip.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		07E91C7D3092708400BC4E77 /* Release configuration for PBXNativeTarget "DefaultClip" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DefaultClip/DefaultClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G4P28UKJSG;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DefaultClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PedroTeruel.PoCNFCAppClip.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		07E91C803092708400BC4E77 /* Debug configuration for PBXNativeTarget "DefaultClipTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G4P28UKJSG;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PedroTeruel.PoCNFCAppClip.DefaultClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DefaultClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DefaultClip";
+			};
+			name = Debug;
+		};
+		07E91C813092708400BC4E77 /* Release configuration for PBXNativeTarget "DefaultClipTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G4P28UKJSG;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PedroTeruel.PoCNFCAppClip.DefaultClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DefaultClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DefaultClip";
+			};
+			name = Release;
+		};
+		07E91C833092708400BC4E77 /* Debug configuration for PBXNativeTarget "DefaultClipUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G4P28UKJSG;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PedroTeruel.PoCNFCAppClip.DefaultClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DefaultClip;
+			};
+			name = Debug;
+		};
+		07E91C843092708400BC4E77 /* Release configuration for PBXNativeTarget "DefaultClipUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G4P28UKJSG;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = PedroTeruel.PoCNFCAppClip.DefaultClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DefaultClip;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -544,6 +910,30 @@
 			buildConfigurations = (
 				0721C4A7309121C100051F87 /* Debug configuration for PBXNativeTarget "PoCNFCAppClipUITests" */,
 				0721C4A8309121C100051F87 /* Release configuration for PBXNativeTarget "PoCNFCAppClipUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		07E91C7B3092708400BC4E77 /* Build configuration list for PBXNativeTarget "DefaultClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07E91C7C3092708400BC4E77 /* Debug configuration for PBXNativeTarget "DefaultClip" */,
+				07E91C7D3092708400BC4E77 /* Release configuration for PBXNativeTarget "DefaultClip" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		07E91C7F3092708400BC4E77 /* Build configuration list for PBXNativeTarget "DefaultClipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07E91C803092708400BC4E77 /* Debug configuration for PBXNativeTarget "DefaultClipTests" */,
+				07E91C813092708400BC4E77 /* Release configuration for PBXNativeTarget "DefaultClipTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		07E91C823092708400BC4E77 /* Build configuration list for PBXNativeTarget "DefaultClipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07E91C833092708400BC4E77 /* Debug configuration for PBXNativeTarget "DefaultClipUITests" */,
+				07E91C843092708400BC4E77 /* Release configuration for PBXNativeTarget "DefaultClipUITests" */,
 			);
 			defaultConfigurationName = Release;
 		};
