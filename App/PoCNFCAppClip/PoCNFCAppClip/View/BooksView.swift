@@ -1,23 +1,39 @@
+//
+//  BooksView.swift
+//  PoCNFCAppClip
+//
+//  Created by Pedro Henrique Hossaka Teruel on 28/10/26.
+//
 import SwiftUI
 
 struct BooksView: View {
     @Environment(Library.self) private var library
     @State private var showScanner = false
+    
+    @StateObject private var nfcManager = NFCManager()
 
     var body: some View {
         List {
             Section {
-                Button {
-                    showScanner = true
-                } label: {
-                    Text("Escanear")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, minHeight: 44)
+                VStack(spacing: 12) {
+                    Button {
+                        nfcManager.startReading()
+                    } label: {
+                        Text("Escanear")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(.borderedProminent)
+
+//                    Text(nfcManager.contentRead)
+//                        .font(.footnote)
+//                        .foregroundStyle(.secondary)
+//                        .multilineTextAlignment(.center)
                 }
-                .buttonStyle(.borderedProminent)
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
             }
+
 
             Section("Livros") {
                 ForEach(library.books) { book in
@@ -38,7 +54,7 @@ struct BooksView: View {
                                 Text(book.author)
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
-                                if library.isRented(book) {
+                                if library.isRented(book: book) {
                                     Text("Alugado por você")
                                         .font(.caption)
                                         .foregroundStyle(.tint)
@@ -52,11 +68,11 @@ struct BooksView: View {
             }
         }
         .navigationTitle("Biblioteca")
-        .sheet(isPresented: $showScanner) {
-            ScanSheetView()
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
-        }
+//        .sheet(isPresented: $showScanner) {
+//            ScanSheetView()
+//                .presentationDetents([.medium])
+//                .presentationDragIndicator(.visible)
+//        }
     }
 }
 

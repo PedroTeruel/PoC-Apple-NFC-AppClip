@@ -1,30 +1,65 @@
+//
+//  ContentView.swift
+//  PoCNFCAppClip
+//
+//  Created by Pedro Henrique Hossaka Teruel on 27/10/26.
+//
+
+
 import SwiftUI
 
 struct ContentView: View {
     @State private var library = Library()
     @State private var selectedTab: LibraryTab = .books
 
+    @StateObject private var nfcManager = NFCManager()
+
     var body: some View {
         TabView(selection: $selectedTab) {
-            Color.clear
-                .tabItem {
-                    Label("Locações", systemImage: "books.vertical")
-                }
-                .tag(LibraryTab.loans)
-
-            NavigationStack {
-                BooksView()
+            Tab(
+                "Locações",
+                systemImage: "books.vertical",
+                value: LibraryTab.loans
+            ) {
+                Color.clear
             }
-            .tabItem {
-                Label("Livros", systemImage: "book.closed")
-            }
-            .tag(LibraryTab.books)
-
-            Color.clear
-                .tabItem {
-                    Label("Perfil", systemImage: "person.crop.circle")
+            Tab(
+                "Livros",
+                systemImage: "book.closed",
+                value: LibraryTab.books
+            ) {
+                NavigationStack {
+                    BooksView()
+//                        .toolbar {
+//                            ToolbarItem(placement: .topBarTrailing) {
+//                                Button {
+//                                    nfcManager.startReading()
+//                                } label: {
+//                                    Label(
+//                                        "Escanear livro",
+//                                        systemImage: "wave.3.right"
+//                                    )
+//                                }
+//                            }
+//                        }
+//                        .safeAreaInset(edge: .bottom) {
+//                            if nfcManager.contentRead != "Nenhum livro identificado" {
+//                                Text(nfcManager.contentRead)
+//                                    .font(.footnote)
+//                                    .frame(maxWidth: .infinity)
+//                                    .padding()
+//                                    .background(.regularMaterial)
+//                            }
+//                        }
                 }
-                .tag(LibraryTab.profile)
+            }
+            Tab(
+                "Perfil",
+                systemImage: "person.crop.circle",
+                value: LibraryTab.profile
+            ) {
+                Color.clear
+            }
         }
         .environment(library)
     }
@@ -35,6 +70,7 @@ private enum LibraryTab: Hashable {
     case books
     case profile
 }
+
 
 #Preview {
     ContentView()

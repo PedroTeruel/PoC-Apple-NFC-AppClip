@@ -1,3 +1,10 @@
+//
+//  BookDetailView.swift
+//  PoCNFCAppClip
+//
+//  Created by Pedro Henrique Hossaka Teruel on 28/10/26.
+//
+
 import SwiftUI
 
 struct BookDetailView: View {
@@ -31,21 +38,16 @@ struct BookDetailView: View {
                     Text(book.synopsis)
                 }
 
-                if book.copies == 0 {
-                    Label("Livro indisponível", systemImage: "xmark.circle")
-                        .foregroundStyle(.secondary)
-                }
-
                 Button {
-                    library.rent(book)
+                    library.rent(book: book)
                     showRentalSuccess = true
                 } label: {
-                    Text(library.isRented(book) ? "Alugado por você" : "Alugar livro")
+                    Text(library.isRented(book: book) ? "Alugado por você" : "Alugar livro")
                         .font(.headline)
                         .frame(maxWidth: .infinity, minHeight: 44)
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(book.copies == 0 || library.isRented(book))
+                .disabled(library.isRented(book: book))
             }
             .padding()
         }
