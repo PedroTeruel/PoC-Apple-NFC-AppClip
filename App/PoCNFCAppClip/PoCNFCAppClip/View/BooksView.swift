@@ -27,11 +27,6 @@ struct BooksView: View {
                             .frame(maxWidth: .infinity, minHeight: 44)
                     }
                     .buttonStyle(.borderedProminent)
-
-//                    Text(nfcManager.contentRead)
-//                        .font(.footnote)
-//                        .foregroundStyle(.secondary)
-//                        .multilineTextAlignment(.center)
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
@@ -71,18 +66,22 @@ struct BooksView: View {
             }
         }
         .navigationTitle("Biblioteca")
-        .onChange(of: nfcManager.scannedCode) { _, code in
-            guard let code else { return }
-
+        .onChange(of: nfcManager.scannedCode){ _, code in
+            guard let code else{
+                return
+            }
             if let book = bookForTag(code) {
                 scannedBookID = book.id
             } else {
                 showUnknownBookAlert = true
             }
         }
-        .navigationDestination(item: $scannedBookID) { id in
-            if let book = library.books.first(where: { $0.id == id }) {
-                BookDetailView(book: book)
+        .navigationDestination(item: $scannedBookID){ bookID in
+            let foundBook = library.books.first { book in
+                return book.id == bookID
+            }
+            if let selectedBook = foundBook {
+                BookDetailView(book: selectedBook)
             } else {
                 ContentUnavailableView(
                     "Livro não encontrado",
@@ -93,27 +92,24 @@ struct BooksView: View {
         .alert("Livro não encontrado", isPresented: $showUnknownBookAlert) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("Esta etiqueta NFC não está associada a um livro do catálogo.")
+            Text("Essa Tag NFC não esta associada a nenhum livro do catálogo.")
         }
-
-//        .sheet(isPresented: $showScanner) {
-//            ScanSheetView()
-//                .presentationDetents([.medium])
-//                .presentationDragIndicator(.visible)
-//        }
     }
     
     private func bookForTag(_ code: String) -> LibraryBook? {
-        let mapping: [String: String] = [
-            "LIVRO-001": "Arquitetura de Sistemas Para Web com Java",
-            "LIVRO-002": "A Divina Comédia"
+        let mapping: [String: Int] = [
+            "LIVRO-001": 1,
+            "LIVRO-002": 2,
+            "LIVRO-003": 3
         ]
 
-        guard let title = mapping[code] else {
+        guard let id = mapping[code] else{
             return nil
         }
 
-        return library.books.first { $0.title == title }
+        return library.books.first{
+            $0.id == id
+        }
     }
     
 }
