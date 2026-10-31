@@ -1,3 +1,10 @@
+//
+//  LibraryBook.swift
+//  PoCNFCAppClip
+//
+//  Created by Pedro Henrique Hossaka Teruel on 28/10/26.
+//
+
 import Foundation
 
 struct LibraryBook: Identifiable {
@@ -6,7 +13,6 @@ struct LibraryBook: Identifiable {
     let author: String
     let category: String
     let synopsis: String
-    let copies: Int
     let symbol: String
 }
 
@@ -14,57 +20,27 @@ extension LibraryBook {
     static let samples: [LibraryBook] = [
         LibraryBook(
             id: 1,
-            title: "Clean Code",
-            author: "Robert C. Martin",
+            title: "Arquitetura de Sistemas Para Web com Java",
+            author: "Evandro C. Teruel",
             category: "Computação",
-            synopsis: "Uma introdução a princípios e práticas para escrever código mais legível, organizado e sustentável.",
-            copies: 3,
+            synopsis: "Esse livro apresenta os principais design patterns e frameworks utilizados no desenvolvimento de aplicações web na plataforma Java.",
             symbol: "chevron.left.forwardslash.chevron.right"
         ),
         LibraryBook(
             id: 2,
-            title: "O Design do Dia a Dia",
-            author: "Don Norman",
-            category: "Design",
-            synopsis: "Uma exploração de como objetos e interfaces podem ser projetados para facilitar a compreensão e o uso.",
-            copies: 2,
-            symbol: "paintbrush.pointed.fill"
-        ),
-        LibraryBook(
-            id: 3,
-            title: "Dom Casmurro",
-            author: "Machado de Assis",
+            title: "A Divina Comédia",
+            author: "Dante Alighieri",
             category: "Literatura",
-            synopsis: "Bentinho relembra sua juventude, seu relacionamento com Capitu e acontecimentos que marcaram sua vida.",
-            copies: 4,
+            synopsis: "Texto fundador da língua italiana, súmula da cosmovisão de toda uma época, monumento poético de rigor e beleza, obra magna da literatura universal.",
             symbol: "text.book.closed.fill"
         ),
         LibraryBook(
-            id: 4,
-            title: "Algoritmos: Teoria e Prática",
-            author: "Thomas H. Cormen",
-            category: "Computação",
-            synopsis: "Uma referência acadêmica sobre estruturas de dados, análise de algoritmos e técnicas de resolução de problemas.",
-            copies: 0,
-            symbol: "curlybraces"
-        ),
-        LibraryBook(
-            id: 5,
-            title: "1984",
+            id: 3,
+            title: "A revolução dos bichos",
             author: "George Orwell",
             category: "Literatura",
-            synopsis: "Uma narrativa distópica sobre vigilância, controle da informação e liberdade individual.",
-            copies: 2,
-            symbol: "eye.fill"
-        ),
-        LibraryBook(
-            id: 6,
-            title: "Design Patterns",
-            author: "Erich Gamma e outros",
-            category: "Engenharia de Software",
-            synopsis: "Uma apresentação de padrões reutilizáveis para organizar soluções em projetos de software orientados a objetos.",
-            copies: 2,
-            symbol: "square.stack.3d.up.fill"
+            synopsis: "Em plena Segunda Guerra Mundial, publicada em 1945 depois de ter sido rejeitada por várias editoras, essa pequena narrativa causou desconforto ao satirizar ferozmente a DITADURA STALINISTA",
+            symbol: "text.book.closed.fill"
         )
     ]
 }
