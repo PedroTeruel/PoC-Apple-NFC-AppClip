@@ -57,14 +57,14 @@ class NFCManager: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
             .trimmingCharacters(in: .whitespacesAndNewlines)
 
         guard let code, !code.isEmpty else {
-            contentRead = "Nenhum texto ou URL encontrado"
+            contentRead = "Nenhuma Tag encontrada"
             return
         }
 
         pendingCode = code
-        contentRead = "Etiqueta encontrada: \(code)"
+        contentRead = "Tag encontrada: \(code)"
 
-        print("Código NFC recebido: \(code)")
+        print("Código NFC: \(code)")
     }
 
     func readerSession(
