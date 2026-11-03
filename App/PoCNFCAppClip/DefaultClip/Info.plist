@@ -9,5 +9,7 @@
 		<key>NSAppClipRequestLocationConfirmation</key>
 		<false/>
 	</dict>
+	<key>NFCReaderUsageDescription</key>
+	<string>Utilizamos NFC para identificar os livros da biblioteca.</string>
 </dict>
 </plist>
