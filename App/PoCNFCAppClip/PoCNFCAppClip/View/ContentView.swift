@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @State private var library = Library()
 
     @StateObject private var nfcManager = NFCManager()
