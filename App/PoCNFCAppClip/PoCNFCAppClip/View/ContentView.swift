@@ -14,32 +14,36 @@ struct ContentView: View {
     @StateObject private var nfcManager = NFCManager()
 
     var body: some View {
-        TabView(selection: $selectedTab) {
-            Tab(
-                "Locações",
-                systemImage: "books.vertical",
-                value: LibraryTab.loans
-            ) {
-                Color.clear
-            }
-            Tab(
-                "Livros",
-                systemImage: "book.closed",
-                value: LibraryTab.books
-            ) {
-                NavigationStack {
-                    BooksView()
-                }
-            }
-            Tab(
-                "Perfil",
-                systemImage: "person.crop.circle",
-                value: LibraryTab.profile
-            ) {
-                Color.clear
-            }
+        NavigationStack {
+            BooksView()
         }
         .environment(library)
+//        TabView(selection: $selectedTab) {
+//            Tab(
+//                "Locações",
+//                systemImage: "books.vertical",
+//                value: LibraryTab.loans
+//            ) {
+//                Color.clear
+//            }
+//            Tab(
+//                "Livros",
+//                systemImage: "book.closed",
+//                value: LibraryTab.books
+//            ) {
+//                NavigationStack {
+//                    BooksView()
+//                }
+//            }
+//            Tab(
+//                "Perfil",
+//                systemImage: "person.crop.circle",
+//                value: LibraryTab.profile
+//            ) {
+//                Color.clear
+//            }
+//        }
+//        .environment(library)
     }
 }
 
