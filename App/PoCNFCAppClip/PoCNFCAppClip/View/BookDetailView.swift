@@ -13,15 +13,7 @@ struct BookDetailView: View {
     @Environment(\.dismiss) private var dismiss
 
     let book: LibraryBook
-
     @State private var showRentalSuccess = false
-
-    private let title = "Design do objeto"
-    private let author = "João Gomes Filho"
-
-    private let synopsis = """
-    O livro apresenta os fundamentos do desenvolvimento de produtos e do design, abordando a relação usuário-produto, níveis de complexidade e funções prática, estética e simbólica, além de detalhar dez bases conceituais do design do objeto com análises e exemplos, estimulando a reflexão crítica sobre o impacto dos objetos no cotidiano, no consumo e no meio ambiente.
-    """
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -40,11 +32,11 @@ struct BookDetailView: View {
 
                 VStack(alignment: .leading, spacing: 0) {
 
-                    Text(title)
+                    Text(book.title)
                         .font(.system(size: 24, weight: .bold, design: .serif))
                         .foregroundStyle(Color("primaryLibrary"))
 
-                    Text(author)
+                    Text(book.author)
                         .font(.system(size: 16, weight: .medium))
                         .foregroundStyle(.secondary)
                         .padding(.top, 3)
@@ -52,7 +44,7 @@ struct BookDetailView: View {
                     Divider()
                         .padding(.vertical, 18)
 
-                    Text(synopsis)
+                    Text(book.synopsis)
                         .font(.system(size: 16, weight: .regular))
                         .foregroundStyle(.secondary)
                         .lineSpacing(4)
@@ -123,7 +115,7 @@ struct BookDetailView: View {
         .alert("Empréstimo solicitado!", isPresented: $showRentalSuccess) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("Você solicitou o empréstimo de \(title).")
+            Text("Você solicitou o empréstimo de \(book.title).")
         }
     }
 
