@@ -17,9 +17,7 @@ struct BooksView: View {
     @State private var showUnknownBookAlert = false
 
     var body: some View {
-
         ZStack {
-
             GeometryReader { geometry in
                 Image("senacLibrary")
                     .resizable()
@@ -72,23 +70,19 @@ struct BooksView: View {
                 }
             }
         }
-
         .onChange(of: nfcManager.scannedCode) { _, code in
-
-            guard let code else {
+            guard let code else{
                 return
             }
 
-            if let book = bookForTag(code) {
+            if let book = bookForTag(code){
                 scannedBookID = book.id
-            } else {
+            } else{
                 showUnknownBookAlert = true
             }
         }
-
         .navigationDestination(item: $scannedBookID) { bookID in
-
-            if let book = library.books.first(where: { $0.id == bookID }) {
+            if let book = library.books.first(where: { $0.id == bookID }){
                 BookDetailView(book: book)
             } else {
                 ContentUnavailableView(
@@ -97,7 +91,6 @@ struct BooksView: View {
                 )
             }
         }
-
         .alert("Livro não encontrado", isPresented: $showUnknownBookAlert) {
             Button("OK", role: .cancel) {}
         } message: {
@@ -106,7 +99,6 @@ struct BooksView: View {
     }
 
     private func bookForTag(_ code: String) -> LibraryBook? {
-
         guard code == "LIVRO-001" else {
             return nil
         }

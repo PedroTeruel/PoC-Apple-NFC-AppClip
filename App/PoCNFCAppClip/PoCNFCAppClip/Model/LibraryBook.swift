@@ -20,10 +20,10 @@ extension LibraryBook {
     static let samples: [LibraryBook] = [
         LibraryBook(
             id: 1,
-            title: "Arquitetura de Sistemas Para Web com Java",
-            author: "Evandro C. Teruel",
-            category: "Computação",
-            synopsis: "Esse livro apresenta os principais design patterns e frameworks utilizados no desenvolvimento de aplicações web na plataforma Java.",
+            title: "Design do objeto.",
+            author: "João Gomes Filho",
+            category: "Design",
+            synopsis: "O livro apresenta os fundamentos do desenvolvimento de produtos e do design, abordando a relação usuário-produto, níveis de complexidade e funções prática, estética e simbólica, além de detalhar dez bases conceituais do design do objeto com análises e exemplos, estimulando a reflexão crítica sobre o impacto dos objetos no cotidiano, no consumo e no meio ambiente.",
             symbol: "chevron.left.forwardslash.chevron.right"
         ),
         LibraryBook(
