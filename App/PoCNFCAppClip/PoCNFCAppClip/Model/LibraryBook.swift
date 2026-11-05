@@ -21,6 +21,8 @@ struct LibraryBook: Identifiable {
     let imageName: String
 }
 
+//Aqui ficam as informações sobre os livros registrados na Biblioteca. A View chama essas informações de acordo com a Tag Escaneada.
+
 extension LibraryBook {
     static let samples: [LibraryBook] = [
         LibraryBook(

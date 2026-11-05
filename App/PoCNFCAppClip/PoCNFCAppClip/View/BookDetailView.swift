@@ -16,13 +16,6 @@ struct BookDetailView: View {
     @State private var showRentalForm = false
     @State private var showRentalSuccess = false
 
-    private let title = "Design do objeto"
-    private let author = "João Gomes Filho"
-
-    private let synopsis = """
-    O livro apresenta os fundamentos do desenvolvimento de produtos e do design, abordando a relação usuário-produto, níveis de complexidade e funções prática, estética e simbólica, além de detalhar dez bases conceituais do design do objeto com análises e exemplos, estimulando a reflexão crítica sobre o impacto dos objetos no cotidiano, no consumo e no meio ambiente.
-    """
-
     var body: some View {
 
         ScrollView(showsIndicators: false) {

@@ -118,6 +118,9 @@ struct BooksView: View {
             }
         }
     }
+    
+    // função para realizar a associação das tags com os devidos livros.
+    // exemplo: a tag que manda "LIVRO-001" abre a BookDetailView com as informaçoes do livro com id: 1
 
     private func bookForTag(_ code: String) -> LibraryBook? {
         let mapping: [String: Int] = [
