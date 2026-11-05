@@ -19,14 +19,12 @@ import SwiftUI
 
 @main
 struct DefaultClipApp: App {
-    @State private var library = Library()
 
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 BooksView()
             }
-            .environment(library)
         }
     }
 }

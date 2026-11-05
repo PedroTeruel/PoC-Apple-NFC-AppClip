@@ -14,7 +14,6 @@ struct LibraryBook: Identifiable {
     let category: String
     let synopsis: String
     let symbol: String
-
     let publisher: String
     let releaseDate: String
     let pages: Int

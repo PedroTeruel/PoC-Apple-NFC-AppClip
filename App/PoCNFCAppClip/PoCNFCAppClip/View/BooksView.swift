@@ -9,16 +9,16 @@ import SwiftUI
 
 struct BooksView: View {
 
-    @Environment(Library.self) private var library
-    @StateObject private var nfcManager = NFCManager()
+    private let books = LibraryBook.samples
 
+    @StateObject private var nfcManager = NFCManager()
     @State private var scannedBookID: Int?
     @State private var showUnknownBookAlert = false
 
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
-                
+
                 Image("senacLibrary")
                     .resizable()
                     .scaledToFill()
@@ -30,7 +30,6 @@ struct BooksView: View {
                         nfcManager.startReading()
                     } label: {
                         HStack {
-
                             Image(systemName: "wave.3.right")
                                 .font(.system(size: 18, weight: .medium))
 
@@ -46,8 +45,16 @@ struct BooksView: View {
                         .padding(.horizontal, 24)
                         .frame(maxWidth: .infinity)
                         .frame(height: 52)
-                        .background(Color("primaryLibrary"), in: Capsule())
-                        .shadow(color: .black.opacity(0.20),radius: 10, x: 0, y: 6)
+                        .background(
+                            Color("primaryLibrary"),
+                            in: Capsule()
+                        )
+                        .shadow(
+                            color: .black.opacity(0.20),
+                            radius: 10,
+                            x: 0,
+                            y: 6
+                        )
                     }
                     .buttonStyle(.plain)
 
@@ -62,22 +69,37 @@ struct BooksView: View {
                 .padding(.bottom, 50)
                 .frame(maxWidth: .infinity)
                 .background {
-                    UnevenRoundedRectangle(topLeadingRadius: 30,topTrailingRadius: 30)
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 30,
+                        topTrailingRadius: 30
+                    )
                     .fill(.ultraThinMaterial)
                     .overlay {
-                        UnevenRoundedRectangle(topLeadingRadius: 30,topTrailingRadius: 30)
-                            .fill(Color.white.opacity(0.45))
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 30,
+                            topTrailingRadius: 30
+                        )
+                        .fill(Color.white.opacity(0.45))
                     }
                     .ignoresSafeArea(edges: .bottom)
                 }
             }
+
             .navigationDestination(item: $scannedBookID) { bookID in
-                if let book = library.books.first(where: { $0.id == bookID }) {
+                if let book = books.first(where: { $0.id == bookID }) {
                     BookDetailView(book: book)
+                } else {
+                    ContentUnavailableView(
+                        "Livro não encontrado",
+                        systemImage: "book.closed"
+                    )
                 }
             }
+
             .onChange(of: nfcManager.scannedCode) { _, newCode in
-                guard let code = newCode else { return }
+                guard let code = newCode else {
+                    return
+                }
 
                 if let book = bookForTag(code) {
                     scannedBookID = book.id
@@ -85,7 +107,11 @@ struct BooksView: View {
                     showUnknownBookAlert = true
                 }
             }
-            .alert("Livro não encontrado", isPresented: $showUnknownBookAlert) {
+
+            .alert(
+                "Livro não encontrado",
+                isPresented: $showUnknownBookAlert
+            ) {
                 Button("OK", role: .cancel) {}
             } message: {
                 Text("Não encontramos um livro associado a esta tag NFC.")
@@ -94,15 +120,15 @@ struct BooksView: View {
     }
 
     private func bookForTag(_ code: String) -> LibraryBook? {
+
         guard code == "LIVRO-001" else {
             return nil
         }
 
-        return library.books.first
+        return books.first(where: { $0.id == 1 })
     }
 }
 
 #Preview {
     BooksView()
-        .environment(Library())
 }

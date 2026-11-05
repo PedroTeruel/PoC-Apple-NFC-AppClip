@@ -5,20 +5,20 @@
 //  Created by Pedro Henrique Hossaka Teruel on 28/10/26.
 //
 
-
 import SwiftUI
 
 struct BookDetailView: View {
-    @Environment(Library.self) private var library
 
     let book: LibraryBook
 
-    @State private var viewModel = BookDetailViewModel()
-    
+    @State private var isRented = false
     @State private var showRentalForm = false
+    @State private var showRentalSuccess = false
 
     var body: some View {
+
         ScrollView(showsIndicators: false) {
+
             VStack(spacing: 0) {
 
                 ZStack {
@@ -35,7 +35,11 @@ struct BookDetailView: View {
                 VStack(alignment: .leading, spacing: 0) {
 
                     Text(book.title)
-                        .font(.system(size: 24, weight: .bold, design: .serif))
+                        .font(.system(
+                            size: 24,
+                            weight: .bold,
+                            design: .serif
+                        ))
                         .foregroundStyle(Color("primaryLibrary"))
 
                     Text(book.author)
@@ -55,18 +59,39 @@ struct BookDetailView: View {
                         .padding(.vertical, 22)
 
                     VStack(spacing: 27) {
-                        BookInfoRow(title: "Editora", value: book.publisher)
-                        BookInfoRow(title: "Data de lançamento", value: book.releaseDate)
-                        BookInfoRow(title: "Páginas", value: "\(book.pages)")
-                        BookInfoRow(title: "Categoria", value: book.category)
-                        BookInfoRow(title: "ISBN", value: book.isbn)
+
+                        BookInfoRow(
+                            title: "Editora",
+                            value: book.publisher
+                        )
+
+                        BookInfoRow(
+                            title: "Data de lançamento",
+                            value: book.releaseDate
+                        )
+
+                        BookInfoRow(
+                            title: "Páginas",
+                            value: "\(book.pages)"
+                        )
+
+                        BookInfoRow(
+                            title: "Categoria",
+                            value: book.category
+                        )
+
+                        BookInfoRow(
+                            title: "ISBN",
+                            value: book.isbn
+                        )
                     }
 
                     Button {
                         showRentalForm = true
                     } label: {
+
                         Text(
-                            library.isRented(book: book)
+                            isRented
                             ? "Alugado por você"
                             : "Solicitar empréstimo"
                         )
@@ -74,13 +99,20 @@ struct BookDetailView: View {
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .frame(height: 52)
-                        .background(Color("primaryLibrary"), in: Capsule())
-                        .shadow(color: .black.opacity(0.18),radius: 6, x: 0, y: 4)
+                        .background(
+                            Color("primaryLibrary"),
+                            in: Capsule()
+                        )
+                        .shadow(
+                            color: .black.opacity(0.18),
+                            radius: 6,
+                            x: 0,
+                            y: 4
+                        )
                     }
-                    .disabled(library.isRented(book: book))
+                    .disabled(isRented)
                     .padding(.top, 28)
                     .padding(.bottom, 24)
-                    
                 }
                 .padding(.horizontal, 22)
                 .padding(.top, 22)
@@ -92,48 +124,64 @@ struct BookDetailView: View {
         .toolbar(.hidden, for: .navigationBar)
 
         .safeAreaInset(edge: .top, spacing: 0) {
+
             HStack {
-                
-                 BackButton()
+
+                BackButton()
 
                 Spacer()
 
                 Text("Detalhes")
-                    .font(.system(size: 20, weight: .bold, design: .serif))
+                    .font(.system(
+                        size: 20,
+                        weight: .bold,
+                        design: .serif
+                    ))
                     .foregroundStyle(.black)
 
                 Spacer()
 
-                Color.clear.frame(width: 44, height: 44)
+                Color.clear
+                    .frame(width: 44, height: 44)
             }
             .padding(.horizontal, 22)
             .padding(.vertical, 8)
             .background(Color("backgroundLibrary"))
         }
-        .alert("Empréstimo solicitado!", isPresented: $viewModel.showRentalSuccess) {
+
+        .alert(
+            "Empréstimo solicitado!",
+            isPresented: $showRentalSuccess
+        ) {
             Button("OK", role: .cancel) {}
         } message: {
             Text("Você solicitou o empréstimo de \(book.title).")
         }
-        
-        .sheet(isPresented: $showRentalForm) {
+
+        .sheet(
+            isPresented: $showRentalForm,
+            onDismiss: {
+                if isRented {
+                    showRentalSuccess = true
+                }
+            }
+        ) {
             RentalFormView {
-                viewModel.rentBook(book, using: library)
+
+                isRented = true
+                showRentalForm = false
+
             }
             .presentationDetents([.large])
             .presentationDragIndicator(.hidden)
             .presentationCornerRadius(32)
             .presentationBackground(.white)
         }
-        
     }
-    
-
 }
 
 #Preview {
     NavigationStack {
         BookDetailView(book: LibraryBook.samples[0])
     }
-    .environment(Library())
 }
