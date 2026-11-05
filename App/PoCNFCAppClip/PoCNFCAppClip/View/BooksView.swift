@@ -19,50 +19,20 @@ struct BooksView: View {
         NavigationStack {
             ZStack(alignment: .bottom) {
 
-                Image("senacLibrary")
+                Image("senacSportCourt")
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
 
                 VStack(spacing: 24) {
-
-                    Button {
-                        nfcManager.startReading()
-                    } label: {
-                        HStack {
-                            Image(systemName: "wave.3.right")
-                                .font(.system(size: 18, weight: .medium))
-
-                            Text("Escanear livro")
-                                .font(.system(size: 16, weight: .bold))
-
-                            Spacer()
-
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 18, weight: .medium))
-                        }
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(
-                            Color("primaryLibrary"),
-                            in: Capsule()
-                        )
-                        .shadow(
-                            color: .black.opacity(0.20),
-                            radius: 10,
-                            x: 0,
-                            y: 6
-                        )
-                    }
-                    .buttonStyle(.plain)
-
                     Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
                         .font(.system(size: 16, weight: .regular))
                         .foregroundStyle(.black.opacity(0.85))
                         .lineSpacing(5)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    ButtonNext()
+                    
+                    
                 }
                 .padding(.horizontal, 30)
                 .padding(.top, 40)
