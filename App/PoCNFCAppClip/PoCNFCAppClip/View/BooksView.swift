@@ -124,7 +124,7 @@ struct BooksView: View {
             "LIVRO-001": 1
         ]
 
-        guard code == "LIVRO-001" else {
+        guard let id = mapping[code] else{
             return nil
         }
 
