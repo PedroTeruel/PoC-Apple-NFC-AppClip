@@ -80,11 +80,15 @@
 		07E91CCB30941E0400BC4E77 /* Exceptions for "PoCNFCAppClip" folder in "DefaultClip" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Model/Library.swift,
 				Model/LibraryBook.swift,
 				Model/NFCManager.swift,
 				View/BookDetailView.swift,
 				View/BooksView.swift,
+				View/Components/BackButton.swift,
+				View/Components/BookInfoRow.swift,
+				View/Components/RentalFormField.swift,
+				View/RentalFormView.swift,
+				ViewModel/RentalFormViewModel.swift,
 			);
 			target = 07E91C583092708300BC4E77 /* DefaultClip */;
 		};
@@ -99,32 +103,12 @@
 			path = PoCNFCAppClip;
 			sourceTree = "<group>";
 		};
-		0721C491309121C100051F87 /* PoCNFCAppClipTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = PoCNFCAppClipTests;
-			sourceTree = "<group>";
-		};
-		0721C49B309121C100051F87 /* PoCNFCAppClipUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = PoCNFCAppClipUITests;
-			sourceTree = "<group>";
-		};
 		07E91C5A3092708300BC4E77 /* DefaultClip */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				07E91C7A3092708400BC4E77 /* Exceptions for "DefaultClip" folder in "DefaultClip" target */,
 			);
 			path = DefaultClip;
-			sourceTree = "<group>";
-		};
-		07E91C6A3092708400BC4E77 /* DefaultClipTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DefaultClipTests;
-			sourceTree = "<group>";
-		};
-		07E91C743092708400BC4E77 /* DefaultClipUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DefaultClipUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -167,11 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				0721C483309121C100051F87 /* PoCNFCAppClip */,
-				0721C491309121C100051F87 /* PoCNFCAppClipTests */,
-				0721C49B309121C100051F87 /* PoCNFCAppClipUITests */,
 				07E91C5A3092708300BC4E77 /* DefaultClip */,
-				07E91C6A3092708400BC4E77 /* DefaultClipTests */,
-				07E91C743092708400BC4E77 /* DefaultClipUITests */,
 				0721C482309121C100051F87 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -227,9 +207,6 @@
 			dependencies = (
 				0721C490309121C100051F87 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				0721C491309121C100051F87 /* PoCNFCAppClipTests */,
-			);
 			name = PoCNFCAppClipTests;
 			productName = PoCNFCAppClipTests;
 			productReference = 0721C48E309121C100051F87 /* PoCNFCAppClipTests.xctest */;
@@ -247,9 +224,6 @@
 			);
 			dependencies = (
 				0721C49A309121C100051F87 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				0721C49B309121C100051F87 /* PoCNFCAppClipUITests */,
 			);
 			name = PoCNFCAppClipUITests;
 			productName = PoCNFCAppClipUITests;
@@ -287,9 +261,6 @@
 			dependencies = (
 				07E91C693092708400BC4E77 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				07E91C6A3092708400BC4E77 /* DefaultClipTests */,
-			);
 			name = DefaultClipTests;
 			productName = DefaultClipTests;
 			productReference = 07E91C673092708400BC4E77 /* DefaultClipTests.xctest */;
@@ -307,9 +278,6 @@
 			);
 			dependencies = (
 				07E91C733092708400BC4E77 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				07E91C743092708400BC4E77 /* DefaultClipUITests */,
 			);
 			name = DefaultClipUITests;
 			productName = DefaultClipUITests;
@@ -757,6 +725,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultClip/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -793,6 +762,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultClip/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

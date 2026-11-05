@@ -5,119 +5,136 @@
 //  Created by Pedro Henrique Hossaka Teruel on 28/10/26.
 //
 
-
 import SwiftUI
 
 struct BooksView: View {
 
-    @Environment(Library.self) private var library
-    @StateObject private var nfcManager = NFCManager()
+    private let books = LibraryBook.samples
 
-    @State private var scannedBookID: LibraryBook.ID?
+    @StateObject private var nfcManager = NFCManager()
+    @State private var scannedBookID: Int?
     @State private var showUnknownBookAlert = false
 
     var body: some View {
+        NavigationStack {
+            ZStack(alignment: .bottom) {
 
-        ZStack {
-
-            GeometryReader { geometry in
                 Image("senacLibrary")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: geometry.size.width,height: geometry.size.height)
-                    .clipped()
-            }
-            .ignoresSafeArea()
+                    .ignoresSafeArea()
 
-            VStack {
-                Spacer()
-
-                VStack(alignment: .leading, spacing: 16) {
-
-                    Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
-                        .font(.system(size: 15))
-                        .foregroundStyle(.primary)
+                VStack(spacing: 24) {
 
                     Button {
                         nfcManager.startReading()
                     } label: {
-
-                        HStack(spacing: 12) {
-
+                        HStack {
                             Image(systemName: "wave.3.right")
-                                .font(.title2)
+                                .font(.system(size: 18, weight: .medium))
 
                             Text("Escanear livro")
-                                .font(.system(size: 16, weight: .semibold))
+                                .font(.system(size: 16, weight: .bold))
 
                             Spacer()
 
                             Image(systemName: "chevron.right")
-                                .font(.headline)
+                                .font(.system(size: 18, weight: .medium))
                         }
                         .foregroundStyle(.white)
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 24)
                         .frame(maxWidth: .infinity)
                         .frame(height: 52)
-                        .background(Color("primaryLibrary"),in: Capsule())
+                        .background(
+                            Color("primaryLibrary"),
+                            in: Capsule()
+                        )
+                        .shadow(
+                            color: .black.opacity(0.20),
+                            radius: 10,
+                            x: 0,
+                            y: 6
+                        )
                     }
+                    .buttonStyle(.plain)
+
+                    Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundStyle(.black.opacity(0.85))
+                        .lineSpacing(5)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .padding(.horizontal, 20)
-                .padding(.top, 20)
-                .padding(.bottom, 8)
+                .padding(.horizontal, 30)
+                .padding(.top, 40)
+                .padding(.bottom, 50)
+                .frame(maxWidth: .infinity)
                 .background {
-                    UnevenRoundedRectangle(topLeadingRadius: 20,bottomLeadingRadius: 0,bottomTrailingRadius: 0,topTrailingRadius: 20)
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 30,
+                        topTrailingRadius: 30
+                    )
                     .fill(.ultraThinMaterial)
+                    .overlay {
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 30,
+                            topTrailingRadius: 30
+                        )
+                        .fill(Color.white.opacity(0.45))
+                    }
                     .ignoresSafeArea(edges: .bottom)
                 }
             }
-        }
 
-        .onChange(of: nfcManager.scannedCode) { _, code in
-
-            guard let code else {
-                return
+            .navigationDestination(item: $scannedBookID) { bookID in
+                if let book = books.first(where: { $0.id == bookID }) {
+                    BookDetailView(book: book)
+                } else {
+                    ContentUnavailableView(
+                        "Livro não encontrado",
+                        systemImage: "book.closed"
+                    )
+                }
             }
 
-            if let book = bookForTag(code) {
-                scannedBookID = book.id
-            } else {
-                showUnknownBookAlert = true
+            .onChange(of: nfcManager.scannedCode) { _, newCode in
+                guard let code = newCode else {
+                    return
+                }
+
+                if let book = bookForTag(code) {
+                    scannedBookID = book.id
+                } else {
+                    showUnknownBookAlert = true
+                }
             }
-        }
 
-        .navigationDestination(item: $scannedBookID) { bookID in
-
-            if let book = library.books.first(where: { $0.id == bookID }) {
-                BookDetailView(book: book)
-            } else {
-                ContentUnavailableView(
-                    "Livro não encontrado",
-                    systemImage: "book.closed"
-                )
+            .alert(
+                "Livro não encontrado",
+                isPresented: $showUnknownBookAlert
+            ) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Não encontramos um livro associado a esta tag NFC.")
             }
-        }
-
-        .alert("Livro não encontrado", isPresented: $showUnknownBookAlert) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text("Essa etiqueta NFC não está associada ao livro da demonstração.")
         }
     }
 
     private func bookForTag(_ code: String) -> LibraryBook? {
+        let mapping: [String: Int] = [
+            "LIVRO-001": 1
+        ]
 
         guard code == "LIVRO-001" else {
             return nil
         }
 
-        return library.books.first
+        return books.first{
+            $0.id == id
+        }
     }
+
 }
 
 #Preview {
-    NavigationStack {
-        BooksView()
-    }
-    .environment(Library())
+    BooksView()
 }
