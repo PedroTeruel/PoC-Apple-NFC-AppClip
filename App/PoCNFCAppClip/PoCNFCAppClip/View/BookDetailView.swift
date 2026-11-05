@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BookDetailView: View {
-    @Environment(Library.self) private var library
+    @State private var isRented = false
     @Environment(\.dismiss) private var dismiss
 
     let book: LibraryBook
@@ -61,18 +61,23 @@ struct BookDetailView: View {
                     }
 
                     Button {
-                        library.rent(book: book)
+                        isRented = true
                         showRentalSuccess = true
                     } label: {
-                        Text(library.isRented(book: book) ? "Alugado por você" : "Solicitar empréstimo")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 56)
-                        .background(Color("primaryLibrary"), in: Capsule())
-                        .shadow(color: .black.opacity(0.18),radius: 6,x: 0,y: 4)
+                        Text(isRented ? "Alugado por você" : "Solicitar empréstimo")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 56)
+                            .background(Color("primaryLibrary"), in: Capsule())
+                            .shadow(
+                                color: .black.opacity(0.18),
+                                radius: 6,
+                                x: 0,
+                                y: 4
+                            )
                     }
-                    .disabled(library.isRented(book: book))
+                    .disabled(isRented)
                     .padding(.top, 28)
                     .padding(.bottom, 24)
                 }
@@ -139,5 +144,4 @@ struct BookDetailView: View {
     NavigationStack {
         BookDetailView(book: LibraryBook.samples[0])
     }
-    .environment(Library())
 }

@@ -80,7 +80,6 @@
 		07E91CCB30941E0400BC4E77 /* Exceptions for "PoCNFCAppClip" folder in "DefaultClip" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Model/Library.swift,
 				Model/LibraryBook.swift,
 				Model/NFCManager.swift,
 				View/BookDetailView.swift,

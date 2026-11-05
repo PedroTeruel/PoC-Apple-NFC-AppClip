@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BooksView: View {
 
-    @Environment(Library.self) private var library
+    private let books = LibraryBook.samples
     @StateObject private var nfcManager = NFCManager()
 
     @State private var scannedBookID: LibraryBook.ID?
@@ -81,7 +81,7 @@ struct BooksView: View {
             }
         }
         .navigationDestination(item: $scannedBookID) { bookID in
-            if let book = library.books.first(where: { $0.id == bookID }){
+            if let book = books.first(where: { $0.id == bookID }){
                 BookDetailView(book: book)
             } else {
                 ContentUnavailableView(
@@ -98,11 +98,19 @@ struct BooksView: View {
     }
 
     private func bookForTag(_ code: String) -> LibraryBook? {
-        guard code == "LIVRO-001" else {
+        let mapping: [String: Int] = [
+            "LIVRO-001": 1,
+            "LIVRO-002": 2,
+            "LIVRO-003": 3
+        ]
+
+        guard let id = mapping[code] else{
             return nil
         }
 
-        return library.books.first
+        return books.first{
+            $0.id == id
+        }
     }
 }
 
@@ -110,5 +118,4 @@ struct BooksView: View {
     NavigationStack {
         BooksView()
     }
-    .environment(Library())
 }
