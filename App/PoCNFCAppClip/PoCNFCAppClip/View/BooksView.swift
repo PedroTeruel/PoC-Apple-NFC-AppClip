@@ -120,13 +120,19 @@ struct BooksView: View {
     }
 
     private func bookForTag(_ code: String) -> LibraryBook? {
+        let mapping: [String: Int] = [
+            "LIVRO-001": 1
+        ]
 
-        guard code == "LIVRO-001" else {
+        guard let id = mapping[code] else{
             return nil
         }
 
-        return books.first(where: { $0.id == 1 })
+        return books.first{
+            $0.id == id
+        }
     }
+
 }
 
 #Preview {
