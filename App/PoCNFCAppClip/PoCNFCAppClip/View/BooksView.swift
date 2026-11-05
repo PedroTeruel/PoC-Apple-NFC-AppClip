@@ -4,119 +4,105 @@
 //
 //  Created by Pedro Henrique Hossaka Teruel on 28/10/26.
 //
+
 import SwiftUI
 
 struct BooksView: View {
+
     @Environment(Library.self) private var library
-    @State private var showScanner = false
-    
     @StateObject private var nfcManager = NFCManager()
-    
-    @State private var scannedBookID: LibraryBook.ID?
+
+    @State private var scannedBookID: Int?
     @State private var showUnknownBookAlert = false
 
     var body: some View {
-        List {
-            Section {
-                VStack(spacing: 12) {
+        NavigationStack {
+            ZStack(alignment: .bottom) {
+                
+                Image("senacLibrary")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea()
+
+                VStack(spacing: 24) {
+
                     Button {
                         nfcManager.startReading()
                     } label: {
-                        Text("Escanear")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, minHeight: 44)
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-            }
+                        HStack {
 
+                            Image(systemName: "wave.3.right")
+                                .font(.system(size: 18, weight: .medium))
 
-            Section("Livros") {
-                ForEach(library.books) { book in
-                    NavigationLink {
-                        BookDetailView(book: book)
-                    } label: {
-                        HStack(spacing: 16) {
-                            Image(systemName: book.symbol)
-                                .font(.title2)
-                                .foregroundStyle(.tint)
-                                .frame(width: 48, height: 64)
-                                .background(.quaternary, in: RoundedRectangle(cornerRadius: 8))
-                                .accessibilityHidden(true)
+                            Text("Escanear livro")
+                                .font(.system(size: 16, weight: .bold))
 
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(book.title)
-                                    .font(.headline)
-                                Text(book.author)
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                                if library.isRented(book: book) {
-                                    Text("Alugado por você")
-                                        .font(.caption)
-                                        .foregroundStyle(.tint)
-                                }
-                            }
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 18, weight: .medium))
                         }
-                        .padding(.vertical, 4)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 24)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color("primaryLibrary"), in: Capsule())
+                        .shadow(color: .black.opacity(0.20),radius: 10, x: 0, y: 6)
                     }
-                    .accessibilityIdentifier("book-\(book.id)")
+                    .buttonStyle(.plain)
+
+                    Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundStyle(.black.opacity(0.85))
+                        .lineSpacing(5)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.horizontal, 30)
+                .padding(.top, 40)
+                .padding(.bottom, 50)
+                .frame(maxWidth: .infinity)
+                .background {
+                    UnevenRoundedRectangle(topLeadingRadius: 30,topTrailingRadius: 30)
+                    .fill(.ultraThinMaterial)
+                    .overlay {
+                        UnevenRoundedRectangle(topLeadingRadius: 30,topTrailingRadius: 30)
+                            .fill(Color.white.opacity(0.45))
+                    }
+                    .ignoresSafeArea(edges: .bottom)
                 }
             }
-        }
-        .navigationTitle("Biblioteca")
-        .onChange(of: nfcManager.scannedCode){ _, code in
-            guard let code else{
-                return
+            .navigationDestination(item: $scannedBookID) { bookID in
+                if let book = library.books.first(where: { $0.id == bookID }) {
+                    BookDetailView(book: book)
+                }
             }
-            if let book = bookForTag(code) {
-                scannedBookID = book.id
-            } else {
-                showUnknownBookAlert = true
+            .onChange(of: nfcManager.scannedCode) { _, newCode in
+                guard let code = newCode else { return }
+
+                if let book = bookForTag(code) {
+                    scannedBookID = book.id
+                } else {
+                    showUnknownBookAlert = true
+                }
             }
-        }
-        .navigationDestination(item: $scannedBookID){ bookID in
-            let foundBook = library.books.first { book in
-                return book.id == bookID
+            .alert("Livro não encontrado", isPresented: $showUnknownBookAlert) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Não encontramos um livro associado a esta tag NFC.")
             }
-            if let selectedBook = foundBook {
-                BookDetailView(book: selectedBook)
-            } else {
-                ContentUnavailableView(
-                    "Livro não encontrado",
-                    systemImage: "book.closed"
-                )
-            }
-        }
-        .alert("Livro não encontrado", isPresented: $showUnknownBookAlert) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text("Essa Tag NFC não esta associada a nenhum livro do catálogo.")
         }
     }
-    
-    private func bookForTag(_ code: String) -> LibraryBook? {
-        let mapping: [String: Int] = [
-            "LIVRO-001": 1,
-            "LIVRO-002": 2,
-            "LIVRO-003": 3
-        ]
 
-        guard let id = mapping[code] else{
+    private func bookForTag(_ code: String) -> LibraryBook? {
+        guard code == "LIVRO-001" else {
             return nil
         }
 
-        return library.books.first{
-            $0.id == id
-        }
+        return library.books.first
     }
-    
 }
 
 #Preview {
-    NavigationStack {
-        BooksView()
-    }
-    .environment(Library())
+    BooksView()
+        .environment(Library())
 }

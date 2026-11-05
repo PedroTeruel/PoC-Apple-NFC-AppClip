@@ -5,60 +5,130 @@
 //  Created by Pedro Henrique Hossaka Teruel on 28/10/26.
 //
 
+
 import SwiftUI
 
 struct BookDetailView: View {
     @Environment(Library.self) private var library
+
     let book: LibraryBook
-    @State private var showRentalSuccess = false
+
+    @State private var viewModel = BookDetailViewModel()
+    
+    @State private var showRentalForm = false
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                Image(systemName: book.symbol)
-                    .font(.system(size: 64))
-                    .foregroundStyle(.tint)
-                    .frame(maxWidth: .infinity, minHeight: 180)
-                    .background(.quaternary, in: RoundedRectangle(cornerRadius: 16))
-                    .accessibilityHidden(true)
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 0) {
 
-                VStack(alignment: .leading, spacing: 8) {
+                ZStack {
+                    Color("backgroundLibrary")
+
+                    Image(book.imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 195, height: 280)
+                }
+                .frame(height: 390)
+                .frame(maxWidth: .infinity)
+
+                VStack(alignment: .leading, spacing: 0) {
+
                     Text(book.title)
-                        .font(.title.bold())
+                        .font(.system(size: 24, weight: .bold, design: .serif))
+                        .foregroundStyle(Color("primaryLibrary"))
+
                     Text(book.author)
+                        .font(.system(size: 16, weight: .medium))
                         .foregroundStyle(.secondary)
-                    Text(book.category)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
+                        .padding(.top, 3)
 
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Sinopse")
-                        .font(.headline)
+                    Divider()
+                        .padding(.vertical, 18)
+
                     Text(book.synopsis)
-                }
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundStyle(.secondary)
+                        .lineSpacing(4)
 
-                Button {
-                    library.rent(book: book)
-                    showRentalSuccess = true
-                } label: {
-                    Text(library.isRented(book: book) ? "Alugado por você" : "Alugar livro")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, minHeight: 44)
+                    Divider()
+                        .padding(.vertical, 22)
+
+                    VStack(spacing: 27) {
+                        BookInfoRow(title: "Editora", value: book.publisher)
+                        BookInfoRow(title: "Data de lançamento", value: book.releaseDate)
+                        BookInfoRow(title: "Páginas", value: "\(book.pages)")
+                        BookInfoRow(title: "Categoria", value: book.category)
+                        BookInfoRow(title: "ISBN", value: book.isbn)
+                    }
+
+                    Button {
+                        showRentalForm = true
+                    } label: {
+                        Text(
+                            library.isRented(book: book)
+                            ? "Alugado por você"
+                            : "Solicitar empréstimo"
+                        )
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color("primaryLibrary"), in: Capsule())
+                        .shadow(color: .black.opacity(0.18),radius: 6, x: 0, y: 4)
+                    }
+                    .disabled(library.isRented(book: book))
+                    .padding(.top, 28)
+                    .padding(.bottom, 24)
+                    
                 }
-                .buttonStyle(.borderedProminent)
-                .disabled(library.isRented(book: book))
+                .padding(.horizontal, 22)
+                .padding(.top, 22)
+                .background(Color.white)
             }
-            .padding()
         }
-        .navigationTitle("Detalhes do livro")
-        .navigationBarTitleDisplayMode(.inline)
-        .alert("Livro alugado!", isPresented: $showRentalSuccess) {
+        .background(Color("backgroundLibrary"))
+
+        .toolbar(.hidden, for: .navigationBar)
+
+        .safeAreaInset(edge: .top, spacing: 0) {
+            HStack {
+                
+                 BackButton()
+
+                Spacer()
+
+                Text("Detalhes")
+                    .font(.system(size: 20, weight: .bold, design: .serif))
+                    .foregroundStyle(.black)
+
+                Spacer()
+
+                Color.clear.frame(width: 44, height: 44)
+            }
+            .padding(.horizontal, 22)
+            .padding(.vertical, 8)
+            .background(Color("backgroundLibrary"))
+        }
+        .alert("Empréstimo solicitado!", isPresented: $viewModel.showRentalSuccess) {
             Button("OK", role: .cancel) {}
         } message: {
-            Text("Você alugou \(book.title).")
+            Text("Você solicitou o empréstimo de \(book.title).")
         }
+        
+        .sheet(isPresented: $showRentalForm) {
+            RentalFormView {
+                viewModel.rentBook(book, using: library)
+            }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.hidden)
+            .presentationCornerRadius(32)
+            .presentationBackground(.white)
+        }
+        
     }
+    
+
 }
 
 #Preview {

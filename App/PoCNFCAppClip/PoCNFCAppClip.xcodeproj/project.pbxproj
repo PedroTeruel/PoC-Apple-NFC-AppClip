@@ -85,6 +85,12 @@
 				Model/NFCManager.swift,
 				View/BookDetailView.swift,
 				View/BooksView.swift,
+				View/Components/BackButton.swift,
+				View/Components/BookInfoRow.swift,
+				View/Components/RentalFormField.swift,
+				View/RentalFormView.swift,
+				ViewModel/BookDetailViewModel.swift,
+				ViewModel/RentalFormViewModel.swift,
 			);
 			target = 07E91C583092708300BC4E77 /* DefaultClip */;
 		};
@@ -757,6 +763,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultClip/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -793,6 +800,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultClip/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
