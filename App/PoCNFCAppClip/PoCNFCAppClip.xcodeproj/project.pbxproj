@@ -91,6 +91,7 @@
 				View/File.swift,
 				View/FRView.swift,
 				View/RentalFormView.swift,
+				View/ReservadequadrasView.swift,
 				ViewModel/RentalFormViewModel.swift,
 			);
 			target = 07E91C583092708300BC4E77 /* DefaultClip */;

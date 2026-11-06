@@ -14,6 +14,7 @@ struct BooksView: View {
     @StateObject private var nfcManager = NFCManager()
     @State private var scannedBookID: Int?
     @State private var showUnknownBookAlert = false
+    @State private var goToReserva = false
 
     var body: some View {
         NavigationStack {
@@ -23,14 +24,72 @@ struct BooksView: View {
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
-
-                VStack(spacing: 24) {
-                    Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
-                        .font(.system(size: 16, weight: .regular))
+                
+            
+                VStack(spacing: 0) {
+                    Button {
+                        nfcManager.startReading()
+                    } label: {
+                        HStack {
+                            Text("Fazer Check-in")
+                                .font(.body)
+                                .fontWeight(.regular)
+                        }
+                        .foregroundStyle(.primary)
+                        .padding(.horizontal, 24)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(.ultraThinMaterial, in: Capsule())
+                        .overlay(
+                            Capsule()
+                                .stroke(.white.opacity(0.3), lineWidth: 1)
+                        )
+                        .shadow(
+                            color: .black.opacity(0.10),
+                            radius: 8,
+                            x: 0,
+                            y: 4
+                        )
+                    }
+                    .buttonStyle(.plain)
+                    
+                    Text("Aproxime seu Iphone da etiqueta NFC da quadra para efetuar seu check-in.")
+                        .font(.system(size: 14, weight: .light))
                         .foregroundStyle(.black.opacity(0.85))
                         .lineSpacing(5)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    ButtonNext()
+                        .padding(.bottom, 27)
+                        .padding(.top, 13)
+                    
+                    
+                    Button {
+                        goToReserva = true
+                    } label: {
+                        HStack {
+                            Text("Efetuar uma reserva")
+                                .font(.body)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 24)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(
+                            Color("primarySportC"),
+                            in: Capsule()
+                        )
+                        .shadow(
+                            color: .black.opacity(0.20),
+                            radius: 10,
+                            x: 0,
+                            y: 6
+                        )
+                    }
+                    .navigationDestination(isPresented: $goToReserva){
+                        ReservadequadrasView()
+                    }
+                    .buttonStyle(.plain)
+                    
                     
                     
                 }
@@ -54,6 +113,7 @@ struct BooksView: View {
                     .ignoresSafeArea(edges: .bottom)
                 }
             }
+            
 
             .navigationDestination(item: $scannedBookID) { bookID in
                 if let book = books.first(where: { $0.id == bookID }) {
