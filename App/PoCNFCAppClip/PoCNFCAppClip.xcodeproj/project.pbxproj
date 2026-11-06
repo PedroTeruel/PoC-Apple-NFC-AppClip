@@ -86,6 +86,7 @@
 				View/BooksView.swift,
 				View/Components/BackButton.swift,
 				View/Components/BookInfoRow.swift,
+				View/Components/ButtonNextLibrary.swift,
 				View/Components/RentalFormField.swift,
 				View/RentalFormView.swift,
 				ViewModel/RentalFormViewModel.swift,
