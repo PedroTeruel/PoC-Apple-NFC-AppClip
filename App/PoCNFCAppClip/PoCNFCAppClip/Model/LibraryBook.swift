@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+// Definição do tipo "LibraryBook" com as propriedades descritas.
 struct LibraryBook: Identifiable {
     let id: Int
     let title: String
@@ -21,7 +23,9 @@ struct LibraryBook: Identifiable {
     let imageName: String
 }
 
+// extension permite acrescentar funcionalidades a um tipo ja definido.
 extension LibraryBook {
+    // o static define que "samples" pertence ao tipo LibraryBook.
     static let samples: [LibraryBook] = [
         LibraryBook(
             id: 1,
