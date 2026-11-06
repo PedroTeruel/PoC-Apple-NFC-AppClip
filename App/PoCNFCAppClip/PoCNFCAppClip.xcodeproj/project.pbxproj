@@ -87,6 +87,7 @@
 				View/Components/BackButton.swift,
 				View/Components/BookInfoRow.swift,
 				View/Components/ButtonNext.swift,
+				View/Components/ConfirmationPopUpView.swift,
 				View/Components/RentalFormField.swift,
 				View/File.swift,
 				View/FRView.swift,
