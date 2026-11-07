@@ -10,7 +10,6 @@ import SwiftUI
 struct BooksView: View {
 
     private let books = LibraryBook.samples
-
     @StateObject private var nfcManager = NFCManager()
     @State private var scannedBookID: Int?
     @State private var showUnknownBookAlert = false
@@ -26,37 +25,7 @@ struct BooksView: View {
 
                 VStack(spacing: 24) {
 
-                    Button {
-                        nfcManager.startReading()
-                    } label: {
-                        HStack {
-                            Image(systemName: "wave.3.right")
-                                .font(.system(size: 18, weight: .medium))
-
-                            Text("Escanear livro")
-                                .font(.system(size: 16, weight: .bold))
-
-                            Spacer()
-
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 18, weight: .medium))
-                        }
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 52)
-                        .background(
-                            Color("primaryLibrary"),
-                            in: Capsule()
-                        )
-                        .shadow(
-                            color: .black.opacity(0.20),
-                            radius: 10,
-                            x: 0,
-                            y: 6
-                        )
-                    }
-                    .buttonStyle(.plain)
+                    ButtonNextLibrary()
 
                     Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
                         .font(.system(size: 16, weight: .regular))
