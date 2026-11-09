@@ -95,7 +95,8 @@ struct BookDetailView: View {
                     }
 
                     Button {
-                        showRentalForm = true
+                       // showRentalForm = true
+                        showRentalSuccess = true
                     } label: {
 
                         Text(
@@ -157,34 +158,41 @@ struct BookDetailView: View {
             .background(Color("backgroundLibrary"))
         }
 
-        .alert(
-            "Empréstimo solicitado!",
-            isPresented: $showRentalSuccess
-        ) {
-            Button("OK", role: .cancel) {}
+//        .alert(
+//            "Empréstimo confirmado!",
+//            isPresented: $showRentalSuccess
+//        ) {
+//            Button("OK", role: .cancel) {}
+//        } message: {
+//            Text("Você solicitou o empréstimo de \(book.title).")
+//        }
+        .alert("Empréstimo confirmado!", isPresented: $showRentalSuccess) {
+            Button("Entendi") {
+            }
+            .keyboardShortcut(.defaultAction)
         } message: {
             Text("Você solicitou o empréstimo de \(book.title).")
         }
 
-        .sheet(
-            isPresented: $showRentalForm,
-            onDismiss: {
-                if isRented {
-                    showRentalSuccess = true
-                }
-            }
-        ) {
-            RentalFormView {
-
-                isRented = true
-                showRentalForm = false
-
-            }
-            .presentationDetents([.large])
-            .presentationDragIndicator(.hidden)
-            .presentationCornerRadius(32)
-            .presentationBackground(.white)
-        }
+//        .sheet(
+//            isPresented: $showRentalForm,
+//            onDismiss: {
+//                if isRented {
+//                    showRentalSuccess = true
+//                }
+//            }
+//        ) {
+//            RentalFormView {
+//
+//                isRented = true
+//                showRentalForm = false
+//
+//            }
+//            .presentationDetents([.large])
+//            .presentationDragIndicator(.hidden)
+//            .presentationCornerRadius(32)
+//            .presentationBackground(.white)
+//        }
     }
 }
 

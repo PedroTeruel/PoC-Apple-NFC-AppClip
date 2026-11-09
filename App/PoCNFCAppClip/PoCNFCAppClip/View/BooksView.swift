@@ -25,7 +25,7 @@ struct BooksView: View {
 
                 VStack(spacing: 24) {
 
-                    ButtonNextLibrary()
+                    ButtonNextLibrary(onScan: nfcManager.startReading)
 
                     Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
                         .font(.system(size: 16, weight: .regular))
@@ -90,7 +90,9 @@ struct BooksView: View {
 
     private func bookForTag(_ code: String) -> LibraryBook? {
         let mapping: [String: Int] = [
-            "LIVRO-001": 1
+            "LIVRO-001": 1,
+            "LIVRO-002": 2,
+            "LIVRO-003": 3
         ]
 
         guard let id = mapping[code] else{
