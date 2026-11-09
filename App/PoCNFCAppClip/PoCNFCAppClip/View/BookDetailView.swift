@@ -35,7 +35,7 @@ struct BookDetailView: View {
                     Image(book.imageName)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 195, height: 280)
+                        .frame(width: 240, height: 320)
                 }
                 .frame(height: 390)
                 .frame(maxWidth: .infinity)
