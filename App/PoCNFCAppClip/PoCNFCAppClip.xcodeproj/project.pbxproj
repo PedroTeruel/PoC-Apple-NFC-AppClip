@@ -89,8 +89,6 @@
 				View/Components/ButtonNext.swift,
 				View/Components/ConfirmationPopUpView.swift,
 				View/Components/RentalFormField.swift,
-				View/File.swift,
-				View/FRView.swift,
 				View/RentalFormView.swift,
 				View/ReservadequadrasView.swift,
 				ViewModel/RentalFormViewModel.swift,
