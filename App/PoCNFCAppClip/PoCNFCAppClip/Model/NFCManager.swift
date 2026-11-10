@@ -42,25 +42,23 @@ class NFCManager: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
         //.main eh utilizado pois esses métodos alteram dados exibidos pela interface.
         //queue: .main escolhe onde os metodos do delegate são executados.
 
-        // alertMessage define a mensagem que o sistema mostra ao usuário durante a leitura. begin() inicia a sessão NFC.
-        session?.alertMessage =
+        session?.alertMessage =         // alertMessage define a mensagem que o sistema mostra ao usuário durante a leitura. begin() inicia a sessão NFC.
             "Aproxime o iPhone da etiqueta NFC do livro."
-        session?.begin()
-        //se session contiver um objeto, chame begin(), e se for nil, não faça nada.
+        session?.begin()        //se session contiver um objeto, chame begin(), e se for nil, não faça nada.
+        
     }
 
     // Metodo que a sessão chama quando detecta mensagens na tag.
     func readerSession(
-        _ session: NFCNDEFReaderSession,
-        // quando uma sessão detectar mensagens NDEF, este método recebe a sessão e as mensagens detectadas
+        _ session: NFCNDEFReaderSession,        // quando uma sessão detectar mensagens NDEF, este método recebe a sessão e as mensagens detectadas
         didDetectNDEFs messages: [NFCNDEFMessage]
         //a sessão NFC passa os valor em messages quando chama o método.
         //[...] indica lista de mensagens
     ) {
         let code = messages
-            .flatMap(\.records)
-            .compactMap { registro -> String? in
-                let (texto, _) = registro.wellKnownTypeTextPayload()
+            .flatMap(\.records)     // o método flatMap pega os registros de cada mensagem e junta em uma lista
+            .compactMap { registro -> String? in    // O compactMap percorre essa lista e executa o código entre { } uma vez para cada registro.
+                let (texto, _) = registro.wellKnownTypeTextPayload()     // wellKnownTypeTextPayload() é um método chamado no registro. Ele tenta interpretar o conteúdo do registro como um texto NDEF. O resultado traz duas informações; esta linha guarda a primeira no nome texto e usa _ para indicar que a segunda não será usada.Ele devolve String?, Locale? (informa a identificação de idioma associada àquele texto)
 
                 if let texto {
                     return texto
@@ -68,10 +66,11 @@ class NFCManager: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
 
                 return registro.wellKnownTypeURIPayload()?.absoluteString
             }
-            .first?
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .first
+        //?
+          //  .trimmingCharacters(in: .whitespacesAndNewlines)
 
-        guard let code, !code.isEmpty else {
+        guard let code, !code.isEmpty else {    // code não esta vazio
             contentRead = "Nenhuma Tag encontrada"
             return
         }
@@ -82,15 +81,18 @@ class NFCManager: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
         print("Código NFC: \(code)")
     }
 
+    // Metodo que a sessão chama quando é invalidada(ou encerrada)
     func readerSession(
-        _ session: NFCNDEFReaderSession,
-        didInvalidateWithError error: Error
+        _ session: NFCNDEFReaderSession,        // recebe a sessão NFC relacionada a esta chamada
+        didInvalidateWithError error: Error     // recebe o motivo do encerramento da sessão
     ) {
-        self.session = nil
-        defer { pendingCode = nil }
+        self.session = nil   // Atribuir nil faz o manager deixar de guardar a referência à sessão encerrada
+        defer {
+            pendingCode = nil
+        }
 
         if let nfcError = error as? NFCReaderError {
-            switch nfcError.code {
+            switch nfcError.code {  // examina o motivo específico de NFC
 
             case .readerSessionInvalidationErrorFirstNDEFTagRead:
                 guard let code = pendingCode else {
