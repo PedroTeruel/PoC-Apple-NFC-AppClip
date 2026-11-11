@@ -11,7 +11,8 @@ struct BooksView: View {
 
     private let books = LibraryBook.samples
     @StateObject private var nfcManager = NFCManager()
-    @State private var scannedBookID: Int?
+    @State private var scannedBook: LibraryBook?
+    @State private var rentedBookIDs: Set<LibraryBook.ID> = []
     @State private var showUnknownBookAlert = false
 
     var body: some View {
@@ -27,11 +28,17 @@ struct BooksView: View {
 
                     ButtonNextLibrary(onScan: nfcManager.startReading)
 
-                    Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
-                        .font(.system(size: 16, weight: .regular))
-                        .foregroundStyle(.black.opacity(0.85))
-                        .lineSpacing(5)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Aproxime seu iPhone da etiqueta NFC do livro para acessar a área de reserva.")
+                            .font(.system(size: 16, weight: .regular))
+                            .foregroundStyle(.black.opacity(0.85))
+                            .lineSpacing(5)
+
+                        Text(nfcManager.contentRead)
+                            .font(.footnote)
+                            .foregroundStyle(.black.opacity(0.7))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(.horizontal, 30)
                 .padding(.top, 40)
@@ -54,15 +61,8 @@ struct BooksView: View {
                 }
             }
 
-            .navigationDestination(item: $scannedBookID) { bookID in
-                if let book = books.first(where: { $0.id == bookID }) {
-                    BookDetailView(book: book)
-                } else {
-                    ContentUnavailableView(
-                        "Livro não encontrado",
-                        systemImage: "book.closed"
-                    )
-                }
+            .navigationDestination(item: $scannedBook) { book in
+                BookDetailView(book: book, rentedBookIDs: $rentedBookIDs)
             }
 
             .onChange(of: nfcManager.scannedCode) { _, newCode in
@@ -71,7 +71,7 @@ struct BooksView: View {
                 }
 
                 if let book = bookForTag(code) {
-                    scannedBookID = book.id
+                    scannedBook = book
                 } else {
                     showUnknownBookAlert = true
                 }

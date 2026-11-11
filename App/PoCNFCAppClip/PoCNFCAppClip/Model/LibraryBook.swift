@@ -9,13 +9,12 @@ import Foundation
 
 
 // Definição do tipo "LibraryBook" com as propriedades descritas.
-struct LibraryBook: Identifiable {
+struct LibraryBook: Identifiable, Hashable {
     let id: Int
     let title: String
     let author: String
     let category: String
     let synopsis: String
-    let symbol: String
     let publisher: String
     let releaseDate: String
     let pages: Int
@@ -35,7 +34,6 @@ extension LibraryBook {
             synopsis: """
             Trata-se do guia de treinamento oficial da Apple projetado para técnicos de suporte, especialistas de help desk e administradores de sistemas. O manual oferece instruções detalhadas e passo a passo sobre como configurar, otimizar e solucionar problemas no sistema operacional Mac OS X 10.4 (Tiger), abordando desde sistemas de arquivos e permissões até redes, linha de comando e sequências de inicialização.
             """,
-            symbol: "text.book.closed.fill",
             publisher: "Peachpit Press",
             releaseDate: "17/08/2005",
             pages: 547,
