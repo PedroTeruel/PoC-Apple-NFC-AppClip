@@ -87,9 +87,6 @@
 				View/Components/BackButton.swift,
 				View/Components/BookInfoRow.swift,
 				View/Components/ButtonNextLibrary.swift,
-				View/Components/RentalFormField.swift,
-				View/RentalFormView.swift,
-				ViewModel/RentalFormViewModel.swift,
 			);
 			target = 07E91C583092708300BC4E77 /* DefaultClip */;
 		};
@@ -570,6 +567,7 @@
 				DEVELOPMENT_TEAM = G4P28UKJSG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Biblioteca;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -605,6 +603,7 @@
 				DEVELOPMENT_TEAM = G4P28UKJSG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Biblioteca;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -725,7 +724,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_CFBundleDisplayName = Biblioteca;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -762,7 +761,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PoCNFCAppClip;
+				INFOPLIST_KEY_CFBundleDisplayName = Biblioteca;
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Utilizamos NFC para identificar os livros da biblioteca.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

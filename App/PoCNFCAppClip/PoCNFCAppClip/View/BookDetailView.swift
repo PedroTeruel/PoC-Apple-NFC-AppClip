@@ -12,16 +12,12 @@ struct BookDetailView: View {
 
     let book: LibraryBook
 
-    @State private var isRented = false
-    @State private var showRentalForm = false
+    @Binding var rentedBookIDs: Set<LibraryBook.ID>
     @State private var showRentalSuccess = false
 
-    private let title = "Design do objeto"
-    private let author = "João Gomes Filho"
-
-    private let synopsis = """
-    O livro apresenta os fundamentos do desenvolvimento de produtos e do design, abordando a relação usuário-produto, níveis de complexidade e funções prática, estética e simbólica, além de detalhar dez bases conceituais do design do objeto com análises e exemplos, estimulando a reflexão crítica sobre o impacto dos objetos no cotidiano, no consumo e no meio ambiente.
-    """
+    private var isRented: Bool {
+        rentedBookIDs.contains(book.id)
+    }
 
     var body: some View {
 
@@ -95,7 +91,7 @@ struct BookDetailView: View {
                     }
 
                     Button {
-                        showRentalForm = true
+                        showRentalSuccess = rentedBookIDs.insert(book.id).inserted
                     } label: {
 
                         Text(
@@ -156,40 +152,20 @@ struct BookDetailView: View {
             .padding(.vertical, 8)
             .background(Color("backgroundLibrary"))
         }
-
-        .alert(
-            "Empréstimo solicitado!",
-            isPresented: $showRentalSuccess
-        ) {
-            Button("OK", role: .cancel) {}
+        .alert("Empréstimo confirmado!", isPresented: $showRentalSuccess) {
+            Button("Entendi") {
+            }
+            .keyboardShortcut(.defaultAction)
         } message: {
             Text("Você solicitou o empréstimo de \(book.title).")
-        }
-
-        .sheet(
-            isPresented: $showRentalForm,
-            onDismiss: {
-                if isRented {
-                    showRentalSuccess = true
-                }
-            }
-        ) {
-            RentalFormView {
-
-                isRented = true
-                showRentalForm = false
-
-            }
-            .presentationDetents([.large])
-            .presentationDragIndicator(.hidden)
-            .presentationCornerRadius(32)
-            .presentationBackground(.white)
         }
     }
 }
 
 #Preview {
+    @Previewable @State var rentedBookIDs: Set<LibraryBook.ID> = []
+
     NavigationStack {
-        BookDetailView(book: LibraryBook.samples[0])
+        BookDetailView(book: LibraryBook.samples[0], rentedBookIDs: $rentedBookIDs)
     }
 }

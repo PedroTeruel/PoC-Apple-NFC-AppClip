@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ButtonNextLibrary: View {
     
-    @StateObject private var nfcManager = NFCManager()
+    let onScan: () -> Void
     
     var body: some View {
-        Button {
-            nfcManager.startReading()
-        } label: {
+        Button(action: onScan) {
             HStack {
                 Image(systemName: "wave.3.right")
                     .font(.system(size: 18, weight: .medium))
@@ -47,5 +45,5 @@ struct ButtonNextLibrary: View {
 }
 
 #Preview {
-    ButtonNextLibrary()
+    ButtonNextLibrary(onScan: {})
 }

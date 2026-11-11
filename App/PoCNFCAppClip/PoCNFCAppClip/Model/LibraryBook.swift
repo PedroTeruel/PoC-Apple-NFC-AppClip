@@ -9,13 +9,12 @@ import Foundation
 
 
 // Definição do tipo "LibraryBook" com as propriedades descritas.
-struct LibraryBook: Identifiable {
+struct LibraryBook: Identifiable, Hashable {
     let id: Int
     let title: String
     let author: String
     let category: String
     let synopsis: String
-    let symbol: String
     let publisher: String
     let releaseDate: String
     let pages: Int
@@ -29,18 +28,17 @@ extension LibraryBook {
     static let samples: [LibraryBook] = [
         LibraryBook(
             id: 1,
-            title: "Design do objeto",
-            author: "João Gomes Filho",
-            category: "Design e arquitetura",
+            title: "Apple Training Series: Mac OS X Support Essentials",
+            author: "Owen Linzmayer",
+            category: "Sistemas Operacionais",
             synopsis: """
-            O livro apresenta os fundamentos do desenvolvimento de produtos e do design, abordando a relação usuário-produto, níveis de complexidade e funções prática, estética e simbólica, além de detalhar dez bases conceituais do design do objeto com análises e exemplos, estimulando a reflexão crítica sobre o impacto dos objetos no cotidiano, no consumo e no meio ambiente.
+            Trata-se do guia de treinamento oficial da Apple projetado para técnicos de suporte, especialistas de help desk e administradores de sistemas. O manual oferece instruções detalhadas e passo a passo sobre como configurar, otimizar e solucionar problemas no sistema operacional Mac OS X 10.4 (Tiger), abordando desde sistemas de arquivos e permissões até redes, linha de comando e sequências de inicialização.
             """,
-            symbol: "text.book.closed.fill",
-            publisher: "Senac São Paulo",
-            releaseDate: "26/05/2026",
-            pages: 270,
+            publisher: "Peachpit Press",
+            releaseDate: "17/08/2005",
+            pages: 547,
             isbn: "9788539659814",
-            imageName: "senacBook"
+            imageName: "macOS"
         )
     ]
 }
