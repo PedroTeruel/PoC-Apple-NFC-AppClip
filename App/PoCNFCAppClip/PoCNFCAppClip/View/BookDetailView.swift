@@ -95,7 +95,6 @@ struct BookDetailView: View {
                     }
 
                     Button {
-                       // showRentalForm = true
                         showRentalSuccess = true
                     } label: {
 
@@ -157,15 +156,6 @@ struct BookDetailView: View {
             .padding(.vertical, 8)
             .background(Color("backgroundLibrary"))
         }
-
-//        .alert(
-//            "Empréstimo confirmado!",
-//            isPresented: $showRentalSuccess
-//        ) {
-//            Button("OK", role: .cancel) {}
-//        } message: {
-//            Text("Você solicitou o empréstimo de \(book.title).")
-//        }
         .alert("Empréstimo confirmado!", isPresented: $showRentalSuccess) {
             Button("Entendi") {
             }
@@ -173,26 +163,6 @@ struct BookDetailView: View {
         } message: {
             Text("Você solicitou o empréstimo de \(book.title).")
         }
-
-//        .sheet(
-//            isPresented: $showRentalForm,
-//            onDismiss: {
-//                if isRented {
-//                    showRentalSuccess = true
-//                }
-//            }
-//        ) {
-//            RentalFormView {
-//
-//                isRented = true
-//                showRentalForm = false
-//
-//            }
-//            .presentationDetents([.large])
-//            .presentationDragIndicator(.hidden)
-//            .presentationCornerRadius(32)
-//            .presentationBackground(.white)
-//        }
     }
 }
 

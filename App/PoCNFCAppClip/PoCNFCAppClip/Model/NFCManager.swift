@@ -67,8 +67,6 @@ class NFCManager: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
                 return registro.wellKnownTypeURIPayload()?.absoluteString
             }
             .first
-        //?
-          //  .trimmingCharacters(in: .whitespacesAndNewlines)
 
         guard let code, !code.isEmpty else {    // code não esta vazio
             contentRead = "Nenhuma Tag encontrada"
