@@ -87,9 +87,6 @@
 				View/Components/BackButton.swift,
 				View/Components/BookInfoRow.swift,
 				View/Components/ButtonNextLibrary.swift,
-				View/Components/RentalFormField.swift,
-				View/RentalFormView.swift,
-				ViewModel/RentalFormViewModel.swift,
 			);
 			target = 07E91C583092708300BC4E77 /* DefaultClip */;
 		};
