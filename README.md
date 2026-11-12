@@ -4,7 +4,7 @@ This SwiftUI proof of concept uses a physical NFC tag to identify a library book
 
 ## Presentation materials
 
-- [Video lesson and demo (MP4)](VideoLesson/AppClipAndCoreNFC.md)
+- [Video lesson and demo (GoogleDrive)](VideoLesson/AppClipAndCoreNFC.md)
 - [Presentation slides (PDF)](Documentation/PoC-Presentation.pdf)
 
 ## How it works
