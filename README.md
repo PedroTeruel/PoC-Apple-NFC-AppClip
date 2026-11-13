@@ -14,8 +14,7 @@ This SwiftUI proof of concept uses a physical NFC tag to identify a library book
 3. The app looks up the tag in its local catalog and opens the matching book.
 4. Tap **Solicitar empréstimo** to confirm the loan. The book stays marked as borrowed for the current session.
 
-The prototype uses a bundled catalog and stores loan state in memory. The book tag is read after the app or App Clip is open. Launching an App Clip from a tag uses a separate invocation URL and requires an App Clip experience. [Apple's App Clip setup guide](https://developer.apple.com/documentation/appclip/configuring-the-launch-experience-of-your-app-clip)
-
+The prototype uses a bundled catalog and stores loan state in memory. The book tag is read after the app or App Clip is open. Launching an App Clip from a tag uses a separate invocation URL and requires an App Clip experience.
 ## Run the demo
 
 You’ll need a Mac with Xcode and the iOS 26 SDK or later, an NFC-capable iPhone running iOS 26 or later, and an NFC tag programmed with `LIVRO-001` as an NDEF Text record.
